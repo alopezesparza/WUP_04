@@ -62,8 +62,11 @@ I have five categories called BACHELOR, GARDUATE, HIGH SCHOOL, JR COLLEGE, and L
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+```{r}
+favstats(WORDSUM~DEGREE,data=thedata)
+```
 
-
+the average mean score for graduates is a bit over ten. there is a difference between the graduates and jr college average scores. further proving that the schoolings are different from each other
 
 ## Inferential Results
 
