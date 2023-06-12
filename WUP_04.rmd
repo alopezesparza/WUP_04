@@ -11,8 +11,13 @@ output:
 require(knitr)
 require(tidyverse)
 require(tigerstats)
-
+thedata<-read.csv(file="GSScsv.csv")
 ```
+```{r eval=FALSE}
+thedata <- thedata %>%
+mutate(across(where(is.character), as.factor))
+``` 
+
 
 # Introduction
 
@@ -20,25 +25,45 @@ require(tigerstats)
 
 The data is in the file GSScsv.csv and came from the 2018 General Social Survey.  The question to answer is to resolve this hypothesis.  
 $H_0$ There is no difference between the average score on the WORDSUM test and level of schooling DEGREE  
-$H_a$ There is a significant difference in average score on the WORDSUM test between at least two levels of DEGREE  
+$H_a$ There is a significant difference in average score on the WORDSUM test between at least two levels of DEGREE    
 
-# Methods
-
+# Methods  
+  
 <!--Mention that you intend to use chatGPT to the greatest extent possible. Give credit to chatGPT when you use it to create code in your report. Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method.!-->
+
+
+we wanted to find out by looking at the data what sort of data we had. we copied write up 3 to read the data in and changed the character variables into factor variables and saw that we had a numerical data which was WORDSUM and we now have a factor variable called degree.     
+  
 
 # Results
 
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
-
-## Descriptive Results
+  
+## Descriptive Results  
 
 ### Graphical Descriptive Results
 
-<!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+<!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->  
+
+```{r}
+library(plotly)
+
+# Create the fancy boxplot
+plot_ly(thedata, x = ~DEGREE, y = ~WORDSUM, type = "box") %>%
+  layout(title = list(text = "<b>Fancy Boxplot</b>", x = 0.5, xanchor = "center", font = list(size = 14)),
+         xaxis = list(title = "DEGREE"),
+         yaxis = list(title = "WORDSUM"))
+
+```  
+
+I have five categories called BACHELOR, GARDUATE, HIGH SCHOOL, JR COLLEGE, and LT HIGH SCHOOL. from the graph i can see that the LT HIGH SCHOOL and GRADUATE are different. as well as LT HIGH SCHOOL and JR COLLEGE. if put back to back these boxes would not touch, which shows me that there is a difference so far between these few things.   
+
 
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+
+
 
 ## Inferential Results
 
